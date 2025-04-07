@@ -8,7 +8,7 @@ class HomeController
     {
         $this->model = new Home;
     }
-    ////////////////////////////// Xử lí đăng nhập
+////////////////////////////// Xử lí đăng nhập
     public function login()
     {
         require './views/login.php';
@@ -34,7 +34,7 @@ class HomeController
 
 
 
-            // check pass
+// check pass
             $User = $this->model->getUser($username);
             if ($User == false) {
                 $error['username'] = "Tài khoản không chính xác";
@@ -48,8 +48,7 @@ class HomeController
 
 
             if (empty($error)) {
-
-                // mật khẩu với tải khoản người dùng nhập vào và thực hiện so sánh
+// mật khẩu với tải khoản người dùng nhập vào và thực hiện so sánh
 
 
                 if($User['trang_thai'] == 1){
@@ -83,11 +82,11 @@ class HomeController
             }
         }
     }
-    ////////////////////////////// end Xử lí đăng nhập
+////////////////////////////// end Xử lí đăng nhập
 
 
 
-    ////////////////////////////// Xử lí đăng kí
+////////////////////////////// Xử lí đăng kí
     public function formDangky()
     {
 
