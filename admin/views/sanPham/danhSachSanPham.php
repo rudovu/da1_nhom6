@@ -1,52 +1,84 @@
 <?php
 require './views/layout/header.php';
 require './views/layout/navbar.php';
-?>
-<div class="container">
-    <div class="container">
-        <!-- Thêm thanh lọc danh mục sản phẩm -->
-        <div class="d-flex justify-content-between align-items-center my-4">
-            <h3 class="mb-0">Danh sách sản phẩm</h3>
-            <form method="GET" action="<?= BASE_URL_CLIENT . '?act=san-pham-theo-danh-muc' ?>">
-                <select name="danh_muc" class="form-select" onchange="this.form.submit()">
-                    <option value="">Tất cả</option>
-                    <?php foreach ($listDanhMuc as $danhMuc) : ?>
-                        <option value="<?= $danhMuc['id'] ?>" <?= (isset($_GET['danh_muc']) && $_GET['danh_muc'] == $danhMuc['id']) ? 'selected' : '' ?>>
-                            <?= $danhMuc['ten_danh_muc'] ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </form>
-        </div>
-        <div class="row">
-            <?php foreach ($listSanPham as $key => $sanPham) : ?>
-                <div class="col-md-3 mb-4"> <!-- Mỗi sản phẩm chiếm 1/3 chiều rộng trên màn hình medium trở lên -->
-                    <div class="card h-100"> <!-- Sử dụng card để đồng bộ chiều cao -->
-                        <a href="<?= BASE_URL_CLIENT . '?act=chi-tiet-san-pham&id=' . $sanPham['id'] ?>">
-                            <img src="<?= '.' . $sanPham['hinh_anh'] ?>" class="card-img-top"
-                                alt="Product Image"
-                                style="height: 200px; width: 100%; object-fit: contain;">
-                        </a>
 
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">
-                                <a href="<?= BASE_URL_CLIENT . '?act=chi-tiet-san-pham&id=' . $sanPham['id'] ?>"><?= $sanPham['ten_san_pham'] ?></a>
-                            </h5>
-                            <p class="card-text"><?= $sanPham['mo_ta'] ?></p>
-                            <div class="mt-auto">
-                                <p class="text-muted" style="text-decoration: line-through;">Giá: <?= number_format($sanPham['gia_san_pham']) ?> VNĐ</p>
-                                <p class="text-danger font-weight-bold">Giá khuyến mãi: <?= number_format($sanPham['gia_khuyen_mai']) ?> VNĐ</p>
-                            </div>
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="<?= BASE_URL_CLIENT . '?act=them-gio-hang&id=' . $sanPham['id'] ?>" class="btn btn-warning"><i class="bi bi-cart-plus-fill"></i></a>
-                            <a href="<?= BASE_URL_CLIENT . '?act=chi-tiet-san-pham&id=' . $sanPham['id'] ?>" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
-                            <a href="<?= BASE_URL_CLIENT . '?act=dat-hang&san_pham_id=' . $sanPham['id'] ?>" class="btn btn-danger">Mua ngay</a>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+?>
+
+
+
+
+<div style="height: auto; width:1000px; margin:20px auto;" class="card">
+
+
+
+    <div class=" col-md-12 row alert">
+        <div class="col-md-7">
+            <a href="<?= BASE_URL_ADMIN . '?act=form-them-san-pham' ?>" style="margin:10px;"><button class="btn border">Thêm sản phẩm</button></a>
+
         </div>
+        <form style="display:flex;" class="col-md-5" action="<?= BASE_URL_ADMIN . '?act=tim-kiem-san-pham' ?>" class="row" method="POST">
+            
+            <input style="border-radius:5px; height:27px; padding:0px 20px;" class="col-md-9" type="text" name="search" placeholder="Tìm kiếm">
+            <button style="height:27px; ;" type="submit" class="search col-md-3  btn-primary"><i class="bi bi-search"></i></button>
+
+        </form>
     </div>
+
+
+    <table class="table table-striped ">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Ngày nhập</th>
+                <th scope="col">Danh mục</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($listSanPham as $key => $sanPham) : ?>
+
+                <tr>
+                    <td><?= $key + 1 ?></td>
+                    <td class="col-md-2"><?= $sanPham['ten_san_pham'] ?></td>
+                    <td class="col-md-1"><img style="width: 80px; height:80px;" src="<?= '.' . $sanPham['hinh_anh'] ?>" alt="" onerror="this.onerror=null; this.src= 'https://tse1.mm.bing.net/th?id=OIP.UA3OcFrmkPI6nMRJVzhFtQHaHa&pid=Api&P=0&h=220'" ;></td>
+                    <td ><?= $sanPham['ngay_nhap'] ?></td>
+                    <td ><?= $sanPham['ten_danh_muc'] ?></td>
+                    <td><?php echo $sanPham['trang_thai'] == 1 ? "Còn hàng" : "Hết hàng" ?></td>
+                    <td class="col-md-2"><?= $sanPham['mo_ta'] ?></td>
+
+
+                    <td class="col-md-2">
+                        <a href="<?= BASE_URL_ADMIN . '?act=chi-tiet-san-pham&id=' . $sanPham['id'] ?>"><button class="btn btn-primary" title="Chi tiết sản phẩm"><i class="bi bi-eye-fill"></i></button></a>
+                        <a href="<?= BASE_URL_ADMIN . '?act=form-sua-san-pham&id=' . $sanPham['id'] ?>"><button title="Sửa sản phẩm" class="btn btn-warning"><i class="bi bi-gear"></i></button></a>
+                        <a onclick="confirm('Bạn có xác nhận xóa')" href="<?= BASE_URL_ADMIN . '?act=delete-san-pham&id=' . $sanPham['id'] ?>"> <button title="Xóa sản phẩm" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></button></a>
+                    </td>
+
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>
-<?php require './views/layout/footer.php'; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

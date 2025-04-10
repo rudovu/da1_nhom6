@@ -4,7 +4,7 @@ require './views/layout/navbar.php';
 
 ?>
 <div class="banner position-relative">
-    <img src="./assets/images/bannner.jpg" alt="" style="width: 100%; height: 600px; object-fit: cover;">
+    <img src="./assets/images/banner.jpg" alt="" style="width: 100%; height: 600px; object-fit: cover;">
     <div class="banner-text position-absolute text-white" style="top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
         <h1 class="display-4 font-weight-bold">Chào mừng đến với Shop bán Nội thất</h1>
         <p class="lead">Khám phá ngay những sản phẩm hot nhất!</p>
@@ -64,7 +64,7 @@ require './views/layout/navbar.php';
     <div class="form-row ">
         <div class="form-group col-md-1"></div>
         <div class="form-group col-md-4 ">
-            <img style="width: 440px; height:400px" src="./assets/images/5jpg" alt="">
+            <img style="width: 440px; height:400px" src="./assets/images/5.jpg" alt="">
         </div>
         <div class="form-group col-md-6">
             <ul>

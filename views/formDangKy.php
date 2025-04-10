@@ -55,11 +55,6 @@
                     <p class="text-danger"> <?php echo !empty($_SESSION['error']['ho_ten']) ? $_SESSION['error']['ho_ten'] : '';?></p>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Hình ảnh</label>
-                    <input type="file" class="form-control" name="hinh_anh" placeholder="Hình ảnh">
-                    <p class="text-danger"> <?php echo !empty($_SESSION['error']['hinh_anh']) ? $_SESSION['error']['hinh_anh'] : '';?></p>
-                </div>
-                <div class="form-group col-md-6">
                     <label for="inputEmail4">Email</label>
                     <input type="email" class="form-control" name="email" placeholder="email">
                     <p class="text-danger"> <?php echo !empty($_SESSION['error']['email']) ? $_SESSION['error']['email'] : '';?></p>
@@ -89,12 +84,6 @@
                     <input type="date" class="form-control" name="ngay_sinh" placeholder="Ngày sinh">
                     <p class="text-danger"> <?php echo !empty($_SESSION['error']['ngay_sinh']) ? $_SESSION['error']['ngay_sinh'] : '';?></p>
                 </div>
-               
-
-
-
-
-
 
               <div class="col-md-10">
               <button type="submit" class="btn btn-primary">Đăng ký</button>

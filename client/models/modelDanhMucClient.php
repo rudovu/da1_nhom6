@@ -1,5 +1,6 @@
 <?php
-class modelDangMucClient
+
+class modelDanhMucClient
 {
     public $conn;
     public function __construct()

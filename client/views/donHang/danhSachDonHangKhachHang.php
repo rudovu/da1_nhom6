@@ -2,11 +2,15 @@
 require './views/layout/header.php';
 require './views/layout/navbar.php';
 ?>
+
 <?php
+// Giả sử bạn lấy dữ liệu từ cơ sở dữ liệu và lưu vào biến $listDonHang
+// Sắp xếp theo ngày đặt từ mới đến cũ (nếu chưa làm ở SQL)
 usort($listDonHangKhachHang, function($a, $b) {
     return strtotime($b['ngay_dat']) - strtotime($a['ngay_dat']);
 });
 ?>
+
 <div class="container my-5">
     <div class="card">
         <div class="card-header bg-primary text-white">
@@ -24,6 +28,7 @@ usort($listDonHangKhachHang, function($a, $b) {
                     </form>
                 </div>
             </div>
+
             <!-- Bảng đơn hàng -->
             <table id="example1" class="table table-bordered table-striped">
                 <thead class="thead-dark">
@@ -54,17 +59,6 @@ usort($listDonHangKhachHang, function($a, $b) {
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Mã đơn hàng</th>
-                        <th>Tên người nhận</th>
-                        <th>Số điện thoại người nhận</th>
-                        <th>Ngày đặt</th>
-                        <th>Tổng tiền</th>
-                        <th>Trạng thái</th>
-                        <th>Thao tác</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
     </div>

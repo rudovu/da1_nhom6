@@ -10,5 +10,3 @@
 
 
 - Cấu hình DB trong file commons/env.php
-
-tôi đã giữ lại phần này để ae nhắn nhủ nhau nhé

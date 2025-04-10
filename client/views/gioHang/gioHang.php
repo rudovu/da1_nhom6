@@ -2,6 +2,8 @@
 require './views/layout/header.php';
 require './views/layout/navbar.php';
 ?>
+
+<!-- main content -->
 <div class="container my-5">
     <?php if (empty($listSanPham)) { ?>
         <div class="alert alert-primary text-center">
@@ -11,7 +13,8 @@ require './views/layout/navbar.php';
         <div class="card p-4 shadow">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h3 class="mb-0">Giỏ hàng</h3>
-                <a href="<?= BASE_URL_CLIENT . '?act=dat-hang' ?>" class="btn btn-danger">Mua ngay tất cả</a>
+                <!-- Thay đổi đường dẫn từ dat-hang sang mua-tat-ca -->
+                <a href="<?= BASE_URL_CLIENT . '?act=mua-tat-ca' ?>" class="btn btn-danger">Mua ngay tất cả</a>
             </div>
 
             <?php foreach ($listSanPham as $sanPham) : ?>
@@ -37,7 +40,13 @@ require './views/layout/navbar.php';
                     </div>
                 </div>
             <?php endforeach; ?>
+
+            <div class="text-end mt-3">
+                <a href="<?= BASE_URL_CLIENT ?>?act=mua-tat-ca" class="btn btn-success">Mua tất cả</a>
+            </div>
         </div>
     <?php } ?>
 </div>
+
+<!-- footer -->
 <?php require './views/layout/footer.php'; ?>

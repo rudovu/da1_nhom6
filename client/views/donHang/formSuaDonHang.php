@@ -1,7 +1,11 @@
 <?php
 require './views/layout/header.php';
 require './views/layout/navbar.php';
+
 ?>
+
+
+
 <section class="content" style="height: auto;">
     <div class="pl-400 container-fluid" style=" height: 400px; width: 1000px; margin:20px auto;">
         <div class="row">
@@ -64,6 +68,7 @@ require './views/layout/navbar.php';
 
                         </div>
                         <!-- /.card-body -->
+
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary" fdprocessedid="x1fkij">Submit</button>
                         </div>

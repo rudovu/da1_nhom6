@@ -19,7 +19,7 @@
             <h3>Đăng Nhập</h3>
     
            
-                <h4 class="text-danger"> <?php echo !empty($_SESSION['error']['trang_thai']) ? $_SESSION['error']['trang_thai'] . ' Liên hệ: Zalo 0388954747 để được hỗ trợ' : ''; ?> </h4>
+                <h4 class="text-danger"> <?php echo !empty($_SESSION['error']['trang_thai']) ? $_SESSION['error']['trang_thai'] . ' Liên hệ: Zalo 0983869759 để được hỗ trợ': ''; ?> </h4>
 
          
             <form action="<?= BASE_URL . '?act=post-login' ?>" method="POST" >

@@ -1,6 +1,5 @@
-<?php
-class modelGioHang
-{
+<?php 
+class modelGioHang{
     public $conn;
     public function __construct()
     {
@@ -49,9 +48,20 @@ class modelGioHang
     }
     public function getAllSanPham($gio_hang_id){
         try{
-            $sql = "SELECT *,chi_tiet_gio_hangs.id,chi_tiet_gio_hangs.so_luong, san_phams.id as id_san_pham FROM chi_tiet_gio_hangs 
+            // Sửa câu truy vấn để rõ ràng về các trường cần lấy
+            $sql = "SELECT 
+                chi_tiet_gio_hangs.id,
+                chi_tiet_gio_hangs.so_luong, 
+                san_phams.id as id_san_pham,
+                san_phams.ten_san_pham,
+                san_phams.mo_ta,
+                san_phams.hinh_anh,
+                san_phams.gia_san_pham,
+                san_phams.gia_khuyen_mai
+            FROM chi_tiet_gio_hangs 
             INNER JOIN san_phams on san_phams.id = chi_tiet_gio_hangs.san_pham_id
             WHERE gio_hang_id = :gio_hang_id";
+            
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([
                 ':gio_hang_id' => $gio_hang_id
@@ -73,4 +83,5 @@ class modelGioHang
             echo "ERROR".$e->getMessage();
         }
     }
+
 }

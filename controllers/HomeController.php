@@ -8,7 +8,7 @@ class HomeController
     {
         $this->model = new Home;
     }
-////////////////////////////// Xử lí đăng nhập
+    ////////////////////////////// Xử lí đăng nhập
     public function login()
     {
         require './views/login.php';
@@ -34,7 +34,7 @@ class HomeController
 
 
 
-// check pass
+            // check pass
             $User = $this->model->getUser($username);
             if ($User == false) {
                 $error['username'] = "Tài khoản không chính xác";
@@ -48,7 +48,8 @@ class HomeController
 
 
             if (empty($error)) {
-// mật khẩu với tải khoản người dùng nhập vào và thực hiện so sánh
+
+                // mật khẩu với tải khoản người dùng nhập vào và thực hiện so sánh
 
 
                 if($User['trang_thai'] == 1){
@@ -82,11 +83,11 @@ class HomeController
             }
         }
     }
-////////////////////////////// end Xử lí đăng nhập
+    ////////////////////////////// end Xử lí đăng nhập
 
 
 
-////////////////////////////// Xử lí đăng kí
+    ////////////////////////////// Xử lí đăng kí
     public function formDangky()
     {
 
@@ -102,6 +103,7 @@ class HomeController
             header('location:' . BASE_URL);
             exit();
         }
+    
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $ten_dang_nhap = $_POST['ten_dang_nhap'];
@@ -109,20 +111,19 @@ class HomeController
             $xac_nhan_mat_khau = $_POST['xac_nhan_mat_khau'];
             $ho_ten = $_POST['ho_ten'];
             $email = $_POST['email'];
-            $so_dien_thoai = $_POST['so_dien_thoai'] ;
+            $so_dien_thoai = $_POST['so_dien_thoai'];
             $dia_chi = $_POST['dia_chi'];
             $gioi_tinh = $_POST['gioi_tinh'];
             $ngay_sinh = $_POST['ngay_sinh'];
             $chuc_vu_id = $_POST['chuc_vu_id'];
-
-            $hinh_anh = $_FILES['hinh_anh'];
-
-
-
-
-
+    
+            // Mặc định ảnh nếu không upload
+            $hinh_anh = 'default.png';
+    
             $listUsers = $this->model->getAllUser();
             $error = [];
+    
+            // Validate
             if (empty($ten_dang_nhap)) {
                 $error['ten_dang_nhap'] = "Không để trống tên đăng nhập";
             }
@@ -150,31 +151,29 @@ class HomeController
             if ($gioi_tinh == 'chua_chon') {
                 $error['gioi_tinh'] = "Bạn phải chọn giới tính";
             }
-
-            // check xác nhận nhận mật khẩu
+    
             if ($mat_khau !== $xac_nhan_mat_khau) {
                 $error['xac_nhan_mat_khau'] = "Xác nhận mật khẩu không chính xác";
             }
-
-            foreach ($listUsers as $key => $user) {
+    
+            foreach ($listUsers as $user) {
                 if ($ten_dang_nhap === $user['ten_dang_nhap']) {
                     $error['ten_dang_nhap'] = "Tài khoản đã tồn tại";
+                    break;
                 }
             }
-
-            $regex_phone = '/^[0-9]+$/'; // Chỉ kiểm tra có phải là số hay không
+    
+            $regex_phone = '/^[0-9]+$/';
             if (!preg_match($regex_phone, $so_dien_thoai)) {
                 $error['so_dien_thoai'] = 'Số điện thoại chỉ được chứa số!';
             }
-            
-
-            $file_thumb = upLoad($hinh_anh, './uploads/');
-            if (empty($error)) { // xứ lí thêm dữ liệu vào database
-                if ($this->model->postTaiKhoan($ten_dang_nhap, $mat_khau, $ho_ten, $email, $so_dien_thoai, $dia_chi, $gioi_tinh, $file_thumb, $ngay_sinh, $chuc_vu_id)) {
-
-                    header('location: ' . BASE_URL);
-                    exit();
-                }
+    
+            if (empty($error)) {
+                // Gọi model thêm tài khoản
+                $this->model->postTaiKhoan($ten_dang_nhap, $mat_khau, $ho_ten, $email, $so_dien_thoai, $dia_chi, $gioi_tinh, $hinh_anh, $ngay_sinh, $chuc_vu_id);
+                $_SESSION['success'] = "Đăng ký thành công!";
+                header('location: ' . BASE_URL);
+                exit();
             } else {
                 $_SESSION['error'] = $error;
                 $_SESSION['flash'] = true;
@@ -183,6 +182,8 @@ class HomeController
             }
         }
     }
+    
+
     /////////////////////////// end Xử lí đăng kí
 
 

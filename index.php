@@ -24,5 +24,7 @@ match ($act) {
     // form Đăng ký
         'form-dang-ky' => (new HomeController())->formDangky(),
     // post xử lí dữ liệu từ form
-        'post-dang-ky' => (new HomeController())->postDangKy(),   
+        'post-dang-ky' => (new HomeController())->postDangKy(),
+    
+       
 };

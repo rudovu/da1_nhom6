@@ -1,7 +1,17 @@
 <?php
 require './views/layout/header.php';
 require './views/layout/navbar.php';
+
+
 ?>
+<!-- navbar -->
+
+
+
+<!-- main content -->
+
+
+
 <div class="container my-4">
     <div class="card product-item p-3 shadow">
         <div class="row">
@@ -32,4 +42,9 @@ require './views/layout/navbar.php';
         </div>
     </div>
 </div>
+
+<!-- end content -->
+
+
+<!-- footer -->
 <?php require './views/layout/footer.php'; ?>

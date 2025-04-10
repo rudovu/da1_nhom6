@@ -1,7 +1,17 @@
 <?php
 require './views/layout/header.php';
 require './views/layout/navbar.php';
+
+
 ?>
+<!-- navbar -->
+
+
+
+<!-- main content -->
+
+
+
 <div class="container">
     <div class="container">
         <!-- Thêm thanh lọc danh mục sản phẩm -->
@@ -48,5 +58,9 @@ require './views/layout/navbar.php';
             <?php endforeach; ?>
         </div>
     </div>
-</div>
-<?php require './views/layout/footer.php'; ?>
+
+    <!-- end content -->
+
+
+    <!-- footer -->
+    <?php require './views/layout/footer.php'; ?>

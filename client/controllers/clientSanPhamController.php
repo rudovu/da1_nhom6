@@ -24,6 +24,7 @@ class clientSanPhamController
             $listSanPham = $this->modelSanPham->getAllSanPham();
         }
         require './views/sanPham/danhSachSanPham.php';
+        // require './views/clientViews/trangChu.php';
     }
     public function chiTietSanPham()
     {
@@ -33,6 +34,8 @@ class clientSanPhamController
         $idClient = $this->modelSanPham->getIdClient($_SESSION['username']);
 
         $luotXem = $this->modelSanPham->luotXem($id);
+
+        // $this->modelSanPham->tangLuotXem($luotXem + 1)
 
         require './views/sanPham/chiTietSanPham.php';
         deleteSessionError();

@@ -31,7 +31,7 @@
         <div class="form-row">
             <div class="form-group col-md-1"></div>
             <div class="form-group col-md-4">
-                <a href=""><img style="width: 440px; height:400px" src="./assets/images/3.jpg" alt=""></a>
+                <a href=""><img style="width: 440px; height:400px" src="./assets/images/7.jpg" alt=""></a>
             </div>
             <div class="form-group col-md-6">
                 <ul>

@@ -2,6 +2,7 @@
 require './views/layout/header.php';
 require './views/layout/navbar.php';
 ?>
+
 <div class="container mt-5">
     <div class="card shadow">
         <div class="card-body">
@@ -24,6 +25,7 @@ require './views/layout/navbar.php';
                     </ul>
                 </div>
             </div>
+
             <!-- Tab bình luận -->
             <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -55,6 +57,7 @@ require './views/layout/navbar.php';
                             </tbody>
                         </table>
                     </div>
+
                     <!-- Form bình luận -->
                     <form action="<?= BASE_URL_CLIENT . '?act=them-binh-luan' ?>" method="POST" class="mt-4">
                         <?php $currentTime = date('Y-m-d'); ?>
