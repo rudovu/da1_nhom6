@@ -62,7 +62,7 @@ require './views/layout/navbar.php';
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Số lượng</label>
-                                <input type="text" class="form-control" name="so_luong" placeholder="Nhập số lượng" value="<?= $detailSanPham['so_luong'] ?>">
+                                <input type="number" class="form-control" name="so_luong" placeholder="Nhập số lượng" min="0" value="<?= isset($detailSanPham['so_luong']) ? $detailSanPham['so_luong'] : 0 ?>">
                                 <p class="text-danger">
                                     <?php if (isset($_SESSION['error']['so_luong'])) {
                                         echo $_SESSION['error']['so_luong'];

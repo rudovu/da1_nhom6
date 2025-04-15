@@ -133,6 +133,12 @@ class clientDonHangController
             header('location:' . BASE_URL_CLIENT . '?act=gio-hang');
             exit();
         }
+        if ($detailSanPham['so_luong'] <= 0) {
+            $_SESSION['error_message'] = "Sản phẩm đã hết hàng.";
+            header('location:' . BASE_URL_CLIENT . '?act=gio-hang');
+            exit();
+        }
+        
         
         $phuongThucThanhToan = $this->modelDonHang->getPhuongThucThanhToan();
         
@@ -218,6 +224,40 @@ class clientDonHangController
             }
         }
     }
+    // Giả sử bạn có hàm xử lý đơn hàng như sau:
+function muaHang($sanPhamId, $soLuongMua) {
+    // Kết nối tới cơ sở dữ liệu và lấy thông tin sản phẩm
+    $query = "SELECT so_luong_ton_kho FROM san_pham WHERE id = :id";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':id', $sanPhamId);
+    $stmt->execute();
+    $sanPham = $stmt->fetch();
+
+    // Kiểm tra xem sản phẩm còn đủ số lượng không
+    if ($sanPham && $sanPham['so_luong_ton_kho'] >= $soLuongMua) {
+        // Cập nhật số lượng tồn kho trong cơ sở dữ liệu
+        $newQuantity = $sanPham['so_luong_ton_kho'] - $soLuongMua;
+        $updateQuery = "UPDATE san_pham SET so_luong_ton_kho = :newQuantity WHERE id = :id";
+        $updateStmt = $pdo->prepare($updateQuery);
+        $updateStmt->bindParam(':newQuantity', $newQuantity);
+        $updateStmt->bindParam(':id', $sanPhamId);
+        $updateStmt->execute();
+
+        // Trả về kết quả thành công
+        return true;
+    }
+
+    // Nếu sản phẩm không đủ số lượng, trả về false
+    return false;
+}
+// Hàm lấy lại danh sách sản phẩm
+function getListSanPham() {
+    $query = "SELECT * FROM san_pham ORDER BY ten_san_pham";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    return $stmt->fetchAll();
+}
+
 
     
 }

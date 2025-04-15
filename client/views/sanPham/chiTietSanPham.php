@@ -23,6 +23,15 @@ require './views/layout/navbar.php';
                         <li class="mb-2"><strong>Danh mục:</strong> <?= $detailSanPham['ten_danh_muc'] ?></li>
                         <li class="mb-2"><strong>Trạng thái:</strong> <?= $detailSanPham['trang_thai'] == 1 ? '<span class="text-success">Còn hàng</span>' : '<span class="text-danger">Hết hàng</span>' ?></li>
                     </ul>
+                    <!-- Nút Mua hàng -->
+                    <?php if ($detailSanPham['so_luong'] > 0): ?>
+                        <a href="?act=dat-hang&san_pham_id=<?= $detailSanPham['id'] ?>" class="btn btn-success mt-3">
+                            Mua ngay
+                        </a>
+                    <?php else: ?>
+                        <button class="btn btn-secondary mt-3" disabled>Hết hàng</button>
+                    <?php endif; ?>
+
                 </div>
             </div>
 

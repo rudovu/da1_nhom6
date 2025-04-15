@@ -80,19 +80,21 @@ require './views/layout/navbar.php';
                     </div>
                     
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="hinh_anh" class="form-label">Ảnh đại diện</label>
-                            <div class="mb-2">
-                                <img id="preview-image" src="<?= isset($userInfo['hinh_anh']) && $userInfo['hinh_anh'] ? '.' . $userInfo['hinh_anh'] : './uploads/default.png' ?>" 
-                                     alt="Preview" class="img-thumbnail" style="width: 100px; height: 100px; object-fit: cover;">
-                            </div>
-                            <input type="file" class="form-control" id="hinh_anh" name="hinh_anh" accept="image/*" onchange="previewImage(this)">
-                            <small class="form-text text-muted">Không chọn nếu không muốn thay đổi ảnh. Chỉ chấp nhận file JPG, PNG, GIF < 5MB</small>
-                            <?php if(isset($_SESSION['error']['hinh_anh'])): ?>
-                                <div class="text-danger"><?= $_SESSION['error']['hinh_anh'] ?></div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
+    <div class="form-group">
+        <label for="hinh_anh" class="form-label">Ảnh đại diện</label>
+        <div class="mb-2">
+            <img id="preview-image"
+                src="../<?= isset($userInfo['hinh_anh']) && !empty($userInfo['hinh_anh']) ? '.' . $userInfo['hinh_anh'] : './uploads/users/th.jpg' ?>"
+                alt="Preview" class="img-thumbnail"
+                style="width: 100px; height: 100px; object-fit: cover;">
+        </div>
+                <input type="file" class="form-control" id="hinh_anh" name="hinh_anh" accept="image/*" onchange="previewImage(this)">
+                <small class="form-text text-muted">Không chọn nếu không muốn thay đổi ảnh. Chỉ chấp nhận file JPG, PNG, GIF < 5MB</small>
+        <?php if(isset($_SESSION['error']['hinh_anh'])): ?>
+            <div class="text-danger"><?= $_SESSION['error']['hinh_anh'] ?></div>
+        <?php endif; ?>
+    </div>
+</div>
                 </div>
                 
                 <div class="form-group mb-3">
@@ -114,15 +116,18 @@ require './views/layout/navbar.php';
 
 <script>
 function previewImage(input) {
-    var preview = document.getElementById('preview-image');
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
+    const file = input.files[0];
+    const preview = document.getElementById('preview-image');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
             preview.src = e.target.result;
-        }
-        reader.readAsDataURL(input.files[0]);
+        };
+        reader.readAsDataURL(file);
     }
 }
 </script>
+
 
 <?php require './views/layout/footer.php'; ?>

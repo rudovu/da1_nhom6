@@ -25,7 +25,7 @@ require './views/layout/navbar.php';
                         <div class="card-body row">
                             <div class="form-group col-md-12">
                                 <label>Tên người nhận</label>
-                                <input type="text" class="form-control" name="ten_nguoi_nhan" placeholder="Nhập tên người nhận" value="<? $detailDonHang['ten_nguoi_nhan'] ?>">
+                                <input type="text" class="form-control" name="ten_nguoi_nhan" placeholder="Nhập tên người nhận" value="<?=$detailDonHang['ten_nguoi_nhan'] ?>">
                                 <p class="text-danger">
                                     <?php if (isset($_SESSION['error']['ten_nguoi_nhan'])) {
                                         echo $_SESSION['error']['ten_nguoi_nhan'];

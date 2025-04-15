@@ -6,7 +6,7 @@ require './views/layout/navbar.php';
 <div class="banner position-relative">
     <img src="./assets/images/banner.jpg" alt="" style="width: 100%; height: 600px; object-fit: cover;">
     <div class="banner-text position-absolute text-white" style="top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-        <h1 class="display-4 font-weight-bold">Chào mừng đến với Shop bán Nội thất</h1>
+        <h1 class="display-4 font-weight-bold">Chào mừng đến với Shop Bán Nội Thất</h1>
         <p class="lead">Khám phá ngay những sản phẩm hot nhất!</p>
         <a href="<?= BASE_URL_CLIENT . '?act=danh-sach-san-pham' ?>" class="btn btn-danger btn-lg">Xem sản phẩm</a>
     </div>

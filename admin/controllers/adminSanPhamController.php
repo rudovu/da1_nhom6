@@ -67,7 +67,7 @@ class adminSanPhamController
                 $error['gia_khuyen_mai'] = "Không để trống giá khuyến mãi ";
             }
             if (empty($so_luong)) {
-                $error['so_luong'] = "Không để trống số lượng";
+                $error['so_luong'] = "Không để trống ";
             }
             if (empty($ngay_nhap)) {
                 $error['ngay_nhap'] = "Không để trống ngày nhập";
@@ -160,9 +160,10 @@ class adminSanPhamController
             if (empty($gia_khuyen_mai)) {
                 $error['gia_khuyen_mai'] = "Không để trống giá khuyến mãi ";
             }
-            if (empty($so_luong)) {
-                $error['so_luong'] = "Không để trống số lượng";
+            if (!isset($so_luong) || $so_luong === '') {
+                $error['so_luong'] = "Không để trống";
             }
+            
             if (empty($ngay_nhap)) {
                 $error['ngay_nhap'] = "Không để trống ngày nhập";
             }

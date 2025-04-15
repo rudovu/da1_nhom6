@@ -1,5 +1,4 @@
-<?php require './views/layout/header.php'; ?>
-<?php require './views/layout/navbar.php'; ?>
+<?php include "./views/layout/header.php"; ?>
 <div class="container mt-5">
     <?php if (isset($_SESSION['error_message'])): ?>
         <div class="alert alert-danger">

@@ -30,7 +30,7 @@ require './views/layout/navbar.php';
                                 <div class="form-group row align-items-center">
                                     <label class="col-md-4 col-form-label">Số lượng:</label>
                                     <div class="col-md-5">
-                                        <input type="number" class="form-control" name="so_luong" min="1" value="1">
+                                        <input type="number" class="form-control" name="so_luong" min="0" max="<?= $detailSanPham['so_luong'] ?>" value="0">
                                     </div>
                                 </div>
                                 <input type="hidden" name="don_gia" value="<?= $detailSanPham['gia_khuyen_mai'] ?>">

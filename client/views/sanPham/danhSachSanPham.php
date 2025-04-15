@@ -1,16 +1,7 @@
 <?php
 require './views/layout/header.php';
 require './views/layout/navbar.php';
-
-
 ?>
-<!-- navbar -->
-
-
-
-<!-- main content -->
-
-
 
 <div class="container">
     <div class="container">
@@ -28,14 +19,13 @@ require './views/layout/navbar.php';
                 </select>
             </form>
         </div>
+
         <div class="row">
-            <?php foreach ($listSanPham as $key => $sanPham) : ?>
-                <div class="col-md-3 mb-4"> <!-- Mỗi sản phẩm chiếm 1/3 chiều rộng trên màn hình medium trở lên -->
-                    <div class="card h-100"> <!-- Sử dụng card để đồng bộ chiều cao -->
+            <?php foreach ($listSanPham as $sanPham): ?>
+                <div class="col-md-3 mb-4">
+                    <div class="card h-100">
                         <a href="<?= BASE_URL_CLIENT . '?act=chi-tiet-san-pham&id=' . $sanPham['id'] ?>">
-                            <img src="<?= '.' . $sanPham['hinh_anh'] ?>" class="card-img-top"
-                                alt="Product Image"
-                                style="height: 200px; width: 100%; object-fit: contain;">
+                            <img src="<?= '.' . $sanPham['hinh_anh'] ?>" class="card-img-top" alt="Product Image" style="height: 200px; width: 100%; object-fit: contain;">
                         </a>
 
                         <div class="card-body d-flex flex-column">
@@ -49,18 +39,19 @@ require './views/layout/navbar.php';
                             </div>
                         </div>
                         <div class="card-footer text-center">
-                            <a href="<?= BASE_URL_CLIENT . '?act=them-gio-hang&id=' . $sanPham['id'] ?>" class="btn btn-warning"><i class="bi bi-cart-plus-fill"></i></a>
-                            <a href="<?= BASE_URL_CLIENT . '?act=chi-tiet-san-pham&id=' . $sanPham['id'] ?>" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
-                            <a href="<?= BASE_URL_CLIENT . '?act=dat-hang&san_pham_id=' . $sanPham['id'] ?>" class="btn btn-danger">Mua ngay</a>
+                            <?php if ($sanPham['so_luong'] > 0): ?>
+                                <a href="<?= BASE_URL_CLIENT . '?act=them-gio-hang&id=' . $sanPham['id'] ?>" class="btn btn-warning"><i class="bi bi-cart-plus-fill"></i></a>
+                                <a href="<?= BASE_URL_CLIENT . '?act=chi-tiet-san-pham&id=' . $sanPham['id'] ?>" class="btn btn-primary"><i class="bi bi-eye-fill"></i></a>
+                                <a href="<?= BASE_URL_CLIENT . '?act=dat-hang&san_pham_id=' . $sanPham['id'] ?>" class="btn btn-danger">Mua ngay</a>
+                            <?php else: ?>
+                                <span class="btn btn-secondary">Hết hàng</span>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
     </div>
+</div>
 
-    <!-- end content -->
-
-
-    <!-- footer -->
-    <?php require './views/layout/footer.php'; ?>
+<?php require './views/layout/footer.php'; ?>

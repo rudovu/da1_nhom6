@@ -82,7 +82,7 @@ class adminDonHangController
     }
     public function boCamTaiKhoan(){
         $id = $_GET['id'];
-        $this->modelDonHang->thayDoiTrangThai($id, 0);
+        $this->modelDonHang->thayDoiTrangThai($id, 1    );
         header('location:' . BASE_URL_ADMIN . '?act=thong-ke');
         exit();
     }

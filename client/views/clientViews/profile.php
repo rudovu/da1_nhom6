@@ -22,10 +22,10 @@ require './views/layout/navbar.php';
                     // Sửa đường dẫn tệp ảnh
                     $displayPath = (!empty($userInfo['hinh_anh'])) 
                         ? str_replace('/uploads/', '../uploads/', $userInfo['hinh_anh']) 
-                        : '../uploads/users/default.png';
+                        : '../uploads/users/th.jpg';
                     
                     // Kiểm tra thực tế nếu file tồn tại trên server
-                    $fullPath = PATH_ROOT . ((!empty($userInfo['hinh_anh'])) ? $userInfo['hinh_anh'] : '/uploads/users/default.png');
+                    $fullPath = PATH_ROOT . ((!empty($userInfo['hinh_anh'])) ? $userInfo['hinh_anh'] : '/uploads/users/th.jpg');
                     $imageExists = file_exists($fullPath);
                     error_log("Full path check: $fullPath, Exists: " . ($imageExists ? "Yes" : "No"));
                     
@@ -35,7 +35,7 @@ require './views/layout/navbar.php';
                     
                     // Nếu ảnh không tồn tại, sử dụng ảnh mặc định
                     if (!$imageExists && !empty($userInfo['hinh_anh'])) {
-                        $displayPath = '../uploads/users/default.png';
+                        $displayPath = '../uploads/users/th.jpg';
                     }
                     ?>
 
