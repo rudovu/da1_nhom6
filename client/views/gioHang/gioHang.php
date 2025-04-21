@@ -33,13 +33,6 @@ require './views/layout/navbar.php';
                         </div>
                         <p><b>Số lượng: <?= $sanPham['so_luong'] ?></b></p>
                         <div class="d-flex justify-content-end">
-                        <?php if (isset($_SESSION['error_message'])) { ?>
-    <div class="alert alert-danger text-center">
-        <?= $_SESSION['error_message'] ?>
-    </div>
-    <?php unset($_SESSION['error_message']); ?>
-<?php } ?>
-
                             <a href="<?= BASE_URL_CLIENT . '?act=chi-tiet-san-pham&id=' . $sanPham['id_san_pham'] ?>" class="btn btn-primary mr-2" title="Chi tiết sản phẩm"><i class="bi bi-eye-fill"></i></a>
                             <a href="<?= BASE_URL_CLIENT . '?act=delete-gio-hang&id=' . $sanPham['id'] ?>" onclick="return confirm('Bạn có chắc muốn xóa sản phẩm này không?')" class="btn btn-warning mr-2" title="Xóa sản phẩm"><i class="bi bi-trash3-fill"></i></a>
                             <a href="<?= BASE_URL_CLIENT . '?act=dat-hang&san_pham_id=' . $sanPham['id_san_pham'] ?>" class="btn btn-danger" title="Mua ngay"><i class="bi bi-cart-fill"></i> Mua ngay</a>

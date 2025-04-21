@@ -51,38 +51,21 @@ class clientGioHangController{
 
     }
     public function postThemGioHang(){
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if($_SERVER['REQUEST_METHOD']){
             $tai_khoan_id = $_POST['tai_khoan_id'];
-    
-            // Kiểm tra xem giỏ hàng đã tồn tại chưa, nếu chưa thì tạo mới
-            if ($this->modelGioHang->getIdGioHang($tai_khoan_id) == false) {
+            if($this->modelGioHang->getIdGioHang($tai_khoan_id) == false){
                 $this->modelGioHang->insertIdGioHang($tai_khoan_id);
             }
             $idGioHang = $this->modelGioHang->getIdGioHang($tai_khoan_id);
-    
+            
+
             $san_pham_id = $_POST['san_pham_id'];
             $so_luong = $_POST['so_luong'];
-    
-            // Lấy thông tin chi tiết sản phẩm
-            $sanPham = $this->modelSanPham->getSanPhamChiTiet($san_pham_id);
-    
-            // Kiểm tra số lượng sản phẩm trong kho
-            if ($sanPham['so_luong'] < $so_luong) {
-                // Nếu số lượng sản phẩm trong kho không đủ, hiển thị thông báo lỗi
-                $_SESSION['error_message'] = 'Số lượng sản phẩm không đủ trong kho!';
-                header('Location: ' . BASE_URL_CLIENT . '?act=danh-sach-san-pham');
-                exit();
-            }
-    
-            // Nếu số lượng hợp lệ, thêm sản phẩm vào giỏ hàng
+
             $this->modelGioHang->insertChiTietGioHang($idGioHang['id'], $san_pham_id, $so_luong);
-            
-            // Điều hướng về danh sách sản phẩm sau khi thêm vào giỏ hàng
-            header('location:' . BASE_URL_CLIENT . '?act=danh-sach-san-pham');
+            header('location:'.BASE_URL_CLIENT . '?act=danh-sach-san-pham');
         }
     }
-    
-    
 
     public function deleteGioHang(){
         $id = $_GET['id'];

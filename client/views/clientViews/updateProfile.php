@@ -84,12 +84,12 @@ require './views/layout/navbar.php';
         <label for="hinh_anh" class="form-label">Ảnh đại diện</label>
         <div class="mb-2">
             <img id="preview-image"
-                src="../<?= isset($userInfo['hinh_anh']) && !empty($userInfo['hinh_anh']) ? '.' . $userInfo['hinh_anh'] : './uploads/users/th.jpg' ?>"
-                alt="Preview" class="img-thumbnail"
-                style="width: 100px; height: 100px; object-fit: cover;">
+                 src="../<?= isset($userInfo['hinh_anh']) && !empty($userInfo['hinh_anh']) ? '.' . $userInfo['hinh_anh'] : './uploads/users/th.jpg' ?>"
+                 alt="Preview" class="img-thumbnail"
+                 style="width: 100px; height: 100px; object-fit: cover;">
         </div>
-                <input type="file" class="form-control" id="hinh_anh" name="hinh_anh" accept="image/*" onchange="previewImage(this)">
-                <small class="form-text text-muted">Không chọn nếu không muốn thay đổi ảnh. Chỉ chấp nhận file JPG, PNG, GIF < 5MB</small>
+        <input type="file" class="form-control" id="hinh_anh" name="hinh_anh" accept="image/*" onchange="previewImage(this)">
+        <small class="form-text text-muted">Không chọn nếu không muốn thay đổi ảnh. Chỉ chấp nhận file JPG, PNG, GIF < 5MB</small>
         <?php if(isset($_SESSION['error']['hinh_anh'])): ?>
             <div class="text-danger"><?= $_SESSION['error']['hinh_anh'] ?></div>
         <?php endif; ?>
